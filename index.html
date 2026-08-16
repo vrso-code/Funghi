@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<meta name="referrer" content="no-referrer">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#4A3524">
+<title>Funghi — Alto Canavese, Valli Orco e Soana</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --paper:#EFE7DC;
+  --card:#F8F3EB;
+  --ink:#241B14;
+  --ink-soft:#584839;
+  --ink-faint:#8A7766;
+  --line:#DBCEBC;
+
+  --terra:#4A3524;
+  --quota:#8A5A2B;
+  --acqua:#2A6C8B;
+  --divieto:#9B2C1F;
+
+  --band-alta:#CBB690;
+  --band-media:#9A7549;
+  --band-bassa:#5C3E23;
+
+  --sans:"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --serif:"Fraunces", "Iowan Old Style", Georgia, "Times New Roman", serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+  --nav-w:268px;
+  --topbar-h:56px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *{transition:none !important; animation:none !important}
+}
+
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:17px;
+  line-height:1.62;
+  -webkit-text-size-adjust:100%;
+}
+
+/* ---------- Sidebar ---------- */
+.nav{
+  position:fixed;
+  inset:0 auto 0 0;
+  width:var(--nav-w);
+  background:var(--terra);
+  color:#E9DCCB;
+  display:flex;
+  flex-direction:column;
+  z-index:60;
+  overflow-y:auto;
+  overscroll-behavior:contain;
+}
+.nav__head{
+  padding:26px 22px 18px;
+  border-bottom:1px solid rgba(255,255,255,.14);
+}
+.nav__title{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:1.5rem;
+  line-height:1.1;
+  margin:0;
+  color:#F7F0E6;
+}
+.nav__sub{
+  margin:8px 0 0;
+  font-family:var(--mono);
+  font-size:.7rem;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:#B79E82;
+}
+.nav__list{list-style:none;margin:0;padding:14px 0 30px}
+.nav__list a{
+  display:flex;
+  gap:12px;
+  align-items:baseline;
+  padding:9px 22px;
+  color:#DCCAB4;
+  text-decoration:none;
+  font-size:.95rem;
+  border-left:3px solid transparent;
+  transition:background .12s ease, color .12s ease;
+}
+.nav__list a:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav__list a.is-active{
+  background:rgba(255,255,255,.10);
+  color:#fff;
+  border-left-color:var(--band-alta);
+  font-weight:500;
+}
+.nav__num{
+  font-family:var(--mono);
+  font-size:.68rem;
+  color:#A98D6E;
+  min-width:1.4em;
+}
+.nav__list a.is-active .nav__num{color:var(--band-alta)}
+.nav__foot{
+  margin-top:auto;
+  padding:16px 22px 22px;
+  font-size:.72rem;
+  color:#A98D6E;
+  font-family:var(--mono);
+  border-top:1px solid rgba(255,255,255,.14);
+}
+
+/* ---------- Topbar (mobile) ---------- */
+.topbar{
+  display:none;
+  position:sticky;
+  top:0;
+  height:var(--topbar-h);
+  align-items:center;
+  gap:12px;
+  padding:0 14px;
+  background:var(--terra);
+  color:#F7F0E6;
+  z-index:50;
+}
+.topbar__title{
+  font-family:var(--serif);
+  font-size:1.05rem;
+  font-weight:600;
+}
+.burger{
+  appearance:none;
+  border:1px solid rgba(255,255,255,.3);
+  background:transparent;
+  color:inherit;
+  border-radius:6px;
+  width:40px;height:36px;
+  display:grid;place-items:center;
+  cursor:pointer;
+  padding:0;
+}
+.burger span{display:block;width:18px;height:2px;background:currentColor;box-shadow:0 -6px 0 currentColor,0 6px 0 currentColor}
+.scrim{
+  display:none;
+  position:fixed;inset:0;
+  background:rgba(30,22,15,.5);
+  z-index:55;
+}
+body.nav-open .scrim{display:block}
+
+/* ---------- Content ---------- */
+.wrap{margin-left:var(--nav-w);padding:0 40px 120px}
+.main{max-width:760px;margin:0 auto}
+
+.hero{padding:72px 0 40px;border-bottom:1px solid var(--line)}
+.hero__eyebrow{
+  font-family:var(--mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--quota);
+  margin:0 0 14px;
+}
+.hero h1{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:clamp(2.1rem,5.5vw,3.2rem);
+  line-height:1.06;
+  letter-spacing:-.015em;
+  margin:0 0 18px;
+}
+.hero p{margin:0;color:var(--ink-soft);font-size:1.06rem;max-width:58ch}
+
+section{padding:52px 0 8px;scroll-margin-top:24px}
+@media (max-width:900px){section{scroll-margin-top:calc(var(--topbar-h) + 12px)}}
+
+h2{
+  font-family:var(--serif);
+  font-weight:600;
+  font-size:1.72rem;
+  line-height:1.18;
+  letter-spacing:-.01em;
+  margin:0 0 6px;
+  display:flex;
+  align-items:baseline;
+  gap:14px;
+}
+h2 .sec-num{
+  font-family:var(--mono);
+  font-size:.74rem;
+  font-weight:500;
+  color:var(--quota);
+  letter-spacing:.1em;
+  flex:none;
+  transform:translateY(-2px);
+}
+h3{
+  font-family:var(--sans);
+  font-size:1rem;
+  font-weight:600;
+  letter-spacing:.01em;
+  margin:30px 0 8px;
+}
+p{margin:0 0 16px}
+ul,ol{margin:0 0 16px;padding-left:1.25em}
+li{margin-bottom:7px}
+li::marker{color:var(--quota)}
+strong{font-weight:600}
+a{color:var(--acqua);text-decoration-thickness:1px;text-underline-offset:2px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--acqua);outline-offset:3px;border-radius:3px}
+
+.lede{font-size:1.03rem;color:var(--ink-soft);margin-bottom:22px}
+
+.box{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-left:4px solid var(--quota);
+  border-radius:4px;
+  padding:18px 20px;
+  margin:22px 0;
+}
+.box--stop{border-left-color:var(--divieto)}
+.box--key{border-left-color:var(--terra)}
+.box__label{
+  font-family:var(--mono);
+  font-size:.68rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  margin:0 0 8px;
+}
+.box p:last-child,.box ul:last-child{margin-bottom:0}
+
+.num{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums}
+
+/* scala altimetrica */
+.fasce{margin:26px 0 8px}
+.fascia{
+  display:grid;
+  grid-template-columns:88px 14px 1fr;
+  gap:0 18px;
+  align-items:stretch;
+}
+.fascia__quota{
+  font-family:var(--mono);
+  font-size:.78rem;
+  color:var(--quota);
+  text-align:right;
+  padding-top:14px;
+  white-space:nowrap;
+}
+.fascia__bar{background:var(--band-media);border-radius:2px}
+.fascia:first-child .fascia__bar{border-radius:7px 7px 2px 2px;background:var(--band-alta)}
+.fascia:last-child .fascia__bar{border-radius:2px 2px 7px 7px;background:var(--band-bassa)}
+.fascia__body{padding:10px 0 22px}
+.fascia__t{font-weight:600;margin:0 0 4px}
+.fascia__body p{margin:0 0 6px;font-size:.96rem;color:var(--ink-soft)}
+.tag{
+  display:inline-block;
+  font-family:var(--mono);
+  font-size:.7rem;
+  letter-spacing:.06em;
+  text-transform:uppercase;
+  color:var(--terra);
+  background:rgba(74,53,36,.10);
+  border-radius:3px;
+  padding:2px 7px;
+}
+
+.tw{overflow-x:auto;margin:22px 0}
+table{border-collapse:collapse;width:100%;font-size:.94rem;min-width:440px}
+th,td{text-align:left;padding:10px 14px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{
+  font-family:var(--mono);
+  font-size:.7rem;
+  letter-spacing:.09em;
+  text-transform:uppercase;
+  color:var(--ink-faint);
+  font-weight:500;
+  border-bottom-color:var(--ink-faint);
+}
+td:first-child{font-weight:600;white-space:nowrap}
+
+.sp{font-style:italic}
+
+footer.page{
+  margin-top:70px;
+  padding-top:22px;
+  border-top:1px solid var(--line);
+  font-size:.85rem;
+  color:var(--ink-faint);
+}
+
+@media (max-width:900px){
+  body{font-size:16.5px}
+  .topbar{display:flex}
+  .wrap{margin-left:0;padding:0 20px 90px}
+  .hero{padding:36px 0 30px}
+  .nav{
+    transform:translateX(-100%);
+    transition:transform .22s ease;
+    width:min(84vw,300px);
+    box-shadow:0 0 40px rgba(0,0,0,.3);
+  }
+  body.nav-open .nav{transform:translateX(0)}
+  h2{font-size:1.45rem;gap:10px}
+  .fascia{grid-template-columns:74px 12px 1fr;gap:0 13px}
+}
+@media print{
+  .nav,.topbar,.scrim{display:none}
+  .wrap{margin:0;padding:0}
+  body{background:#fff;font-size:11pt}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav" aria-label="Indice della guida">
+  <div class="nav__head">
+    <p class="nav__title">Funghi</p>
+    <p class="nav__sub">Valli Orco e Soana</p>
+  </div>
+  <ul class="nav__list">
+    <li><a href="#regole"><span class="nav__num">01</span>Permesso e regole</a></li>
+    <li><a href="#parco"><span class="nav__num">02</span>Parco: divieti e deroghe</a></li>
+    <li><a href="#zone"><span class="nav__num">03</span>Quote e zone</a></li>
+    <li><a href="#fe-jerener"><span class="nav__num">04</span>Fè e Jerener</a></li>
+    <li><a href="#piante"><span class="nav__num">05</span>Alberi e specie</a></li>
+    <li><a href="#versante"><span class="nav__num">06</span>Versante ed esposizione</a></li>
+    <li><a href="#quando"><span class="nav__num">07</span>Quando andare</a></li>
+    <li><a href="#tecnica"><span class="nav__num">08</span>Tecnica di ricerca</a></li>
+    <li><a href="#calendario"><span class="nav__num">09</span>Calendario stagionale</a></li>
+    <li><a href="#sicurezza"><span class="nav__num">10</span>Sicurezza e controllo</a></li>
+    <li><a href="#link"><span class="nav__num">11</span>Link utili</a></li>
+  </ul>
+  <div class="nav__foot">Uso personale — Castellamonte</div>
+</nav>
+
+<div class="scrim" id="scrim" hidden></div>
+
+<header class="topbar">
+  <button class="burger" id="burger" aria-label="Apri l'indice" aria-expanded="false" aria-controls="nav"><span></span></button>
+  <span class="topbar__title">Funghi — Orco e Soana</span>
+</header>
+
+<div class="wrap">
+<main class="main">
+
+  <div class="hero">
+    <p class="hero__eyebrow">Guida di campo · Alto Canavese</p>
+    <h1>Raccolta funghi in Valle Orco e Valle Soana</h1>
+    <p>Dove si può, a che quota, sotto quali piante, e come leggere la pioggia per capire quando vale la pena partire.</p>
+  </div>
+
+  <section id="regole">
+    <h2><span class="sec-num">01</span>Permesso e regole</h2>
+    <p class="lede">In Piemonte la raccolta è subordinata al titolo previsto dalla L.R. 24/2007. Il titolo è personale e vale su tutto il territorio regionale, indipendentemente dall'Unione Montana che lo emette.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Titolo</th><th>Costo</th><th>Validità</th></tr></thead>
+        <tbody>
+          <tr><td>Giornaliero</td><td class="num">5 €</td><td>Un giorno</td></tr>
+          <tr><td>Settimanale</td><td class="num">10 €</td><td>Sette giorni</td></tr>
+          <tr><td>Annuale</td><td class="num">30 €</td><td>Fino al 31/12 dell'anno</td></tr>
+          <tr><td>Biennale</td><td class="num">60 €</td><td>Due anni solari</td></tr>
+          <tr><td>Triennale</td><td class="num">90 €</td><td>Tre anni solari</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>Il pagamento si fa con <strong>PagoPA come versamento spontaneo</strong> sul portale dell'Unione Montana (per queste valli: Unione Montana Valli Orco e Soana). Causale tipo: <span class="num">L.R. 24/2007 titolo raccolta funghi anno 2026</span>. La ricevuta, insieme a un documento d'identità, va esibita al personale di vigilanza: è quella la prova, non un tesserino cartaceo.</p>
+
+    <div class="box box--key">
+      <p class="box__label">Regole in bosco</p>
+      <ul>
+        <li>Massimo <span class="num">3 kg</span> a persona al giorno.</li>
+        <li>Raccolta consentita <strong>dall'alba al tramonto</strong>. Di notte è vietata.</li>
+        <li>Raccolta per torsione, pulizia sommaria sul posto, trasporto in <strong>cestino rigido e aerato</strong>.</li>
+        <li>Vietati rastrelli, uncini e qualsiasi attrezzo che rovini lo strato umifero e il micelio.</li>
+        <li>I minori di 14 anni raccolgono gratis se accompagnati da un maggiorenne munito di titolo; il loro raccolto si somma a quello dell'adulto.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="parco">
+    <h2><span class="sec-num">02</span>Parco: divieti e deroghe</h2>
+    <p class="lede">Dentro il Parco Nazionale Gran Paradiso vale il regolamento-stralcio del Parco, che si somma alla legge regionale. Il divieto generale ha però due deroghe soggettive che cambiano tutto per chi ha terreni lì.</p>
+
+    <div class="box box--stop">
+      <p class="box__label">Divieto generale — art. 1 comma 4</p>
+      <p>È vietata la raccolta, l'asportazione, il danneggiamento e la detenzione dei prodotti del sottobosco: funghi epigei (anche non commestibili), tartufi, fragole, lamponi, mirtilli, muschi, bacche di ginepro. Di fragole, lamponi e mirtilli è consentito solo il consumo sul posto.</p>
+    </div>
+
+    <h3>Chi è escluso dal divieto</h3>
+    <p>Lo stesso comma fa salva la raccolta da parte di due categorie:</p>
+    <ul>
+      <li><strong>Residenti</strong>, limitatamente al territorio del proprio Comune.</li>
+      <li><strong>Proprietari di beni immobili</strong> situati all'interno dell'area protetta.</li>
+    </ul>
+    <p>Entrambe le categorie restano soggette ai limiti della normativa regionale: serve comunque il titolo L.R. 24/2007, valgono i 3 kg giornalieri, l'orario alba-tramonto e il divieto di rastrelli.</p>
+
+    <div class="box box--key">
+      <p class="box__label">Cosa portare in tasca — art. 1 comma 5</p>
+      <p>La condizione va dimostrata su richiesta del personale di sorveglianza con documentazione idonea. In pratica: <strong>visura o estratto di mappa catastale</strong> dei terreni, documento d'identità, ricevuta del titolo regionale.</p>
+    </div>
+
+    <p>Un'ambiguità da conoscere: per i residenti il testo fissa un limite territoriale esplicito ("all'interno del proprio Comune"), per i proprietari no. L'interpretazione prudente è che la deroga valga <strong>sui propri terreni</strong>. Se serve chiarezza sull'estensione, va chiesta per iscritto al Corpo di Sorveglianza tramite il Centro visitatori di Noasca (<a href="mailto:info.pie@pngp.it">info.pie@pngp.it</a>, 0124 901070) e la risposta va conservata.</p>
+
+    <h3>Per tutti gli altri</h3>
+    <p><strong>Il confine del Parco non coincide con quello dei Comuni.</strong> Locana, Noasca, Ceresole Reale, Ribordone, Ronco Canavese e Valprato Soana hanno il fondovalle e i versanti bassi fuori Parco e le testate dei valloni dentro. Il perimetro si controlla sulla cartografia ufficiale del Parco, oppure scaricando in anticipo la zona su un'app offline (OsmAnd, Gaia GPS): il confine del PNGP è mappato in OpenStreetMap e resta visibile anche senza segnale.</p>
+    <p>Le sanzioni amministrative per le violazioni del regolamento vanno da <span class="num">25,82 €</span> a <span class="num">1.032,92 €</span>.</p>
+  </section>
+
+  <section id="zone">
+    <h2><span class="sec-num">03</span>Quote e zone</h2>
+    <p class="lede">Le tre fasce altimetriche utili, dall'alta alla bassa. La fascia produttiva si sposta durante la stagione: si sale con il caldo, si scende con il freddo.</p>
+
+    <div class="fasce">
+      <div class="fascia">
+        <div class="fascia__quota">1400–2000 m</div>
+        <div class="fascia__bar"></div>
+        <div class="fascia__body">
+          <p class="fascia__t">Lariceti e alneti di ontano verde</p>
+          <p>Margini dei pascoli, bordi degli alneti, radure sopra gli alpeggi. Sopra Ceresole e sopra Campiglia/Piamprato si è quasi sempre dentro Parco: senza deroga soggettiva, questa fascia è preclusa.</p>
+          <span class="tag">Luglio – Agosto</span>
+        </div>
+      </div>
+      <div class="fascia">
+        <div class="fascia__quota">900–1400 m</div>
+        <div class="fascia__bar"></div>
+        <div class="fascia__body">
+          <p class="fascia__t">Betulla, nocciolo, rimboschimenti di abete rosso</p>
+          <p>Val Ribordone, valloni laterali sopra Locana, versanti sopra Ronco Canavese. Fascia di raccordo: tiene sia nelle code d'estate sia a inizio autunno.</p>
+          <span class="tag">Agosto – Settembre</span>
+        </div>
+      </div>
+      <div class="fascia">
+        <div class="fascia__quota">450–900 m</div>
+        <div class="fascia__bar"></div>
+        <div class="fascia__body">
+          <p class="fascia__t">Castagneti</p>
+          <p>Bassa Valle Orco: versanti di Sparone, Frassinetto, Alpette, bassa Val Ribordone. Valle Soana: Ingria, Ronco Canavese e le frazioni basse. È la fascia migliore da metà settembre alle prime gelate.</p>
+          <span class="tag">Settembre – Ottobre</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="box">
+      <p class="box__label">Alternativa più vicina</p>
+      <p>Da Castellamonte, <strong>Valle Sacra e Valchiusella</strong> sono a 20–30 minuti, interamente fuori Parco, con castagneti e faggete che in Orco e Soana quasi non esistono.</p>
+    </div>
+  </section>
+
+  <section id="fe-jerener">
+    <h2><span class="sec-num">04</span>Fè e Jerener</h2>
+    <p class="lede">Fè (<span class="num">880 m</span>), Bettolino e Jerener (<span class="num">859 m</span>) stanno tutte sulla stessa fascia, <span class="num">850–900 m</span>, sotto il capoluogo di Noasca (<span class="num">1062 m</span>). È il limite superiore del castagneto in Valle Orco, mescolato a prati da sfalcio: due ambienti diversi sulla stessa proprietà, che producono cose diverse in momenti diversi.</p>
+
+    <h3>Calendario per questa fascia</h3>
+    <div class="tw">
+      <table>
+        <thead><tr><th>Periodo</th><th>Terreno</th><th>Cosa esce</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Apr – metà mag</td>
+            <td>Margini di prato, siepi, sotto frassino e biancospino</td>
+            <td>Prugnolo (<span class="sp">Calocybe gambosa</span>): cresce in file e cerchi, sempre nello stesso punto ogni anno</td>
+          </tr>
+          <tr>
+            <td>Giu – lug</td>
+            <td>Castagneto, parti fresche e ombrose, impluvi, bordo del rio</td>
+            <td>Porcino reticolato (<span class="sp">B. reticulatus</span>), mazza di tamburo ai margini</td>
+          </tr>
+          <tr>
+            <td>Fine ago – set</td>
+            <td>Prati sfalciati, soprattutto dove hanno stazionato le vacche l'anno prima</td>
+            <td>Prataiolo (<span class="sp">Agaricus campestris</span>), gambesecche (<span class="sp">Marasmius oreades</span>)</td>
+          </tr>
+          <tr>
+            <td>Set – ott</td>
+            <td>Castagneto: vecchi castagni da frutto a chioma larga</td>
+            <td>Porcino nero (<span class="sp">B. aereus</span>) sul solatìo, <span class="sp">B. edulis</span> sul bacìo. Finestra migliore dell'anno</td>
+          </tr>
+          <tr>
+            <td>Ott – nov</td>
+            <td>Ceppaie di castagno e castagni deperienti</td>
+            <td>Chiodini (<span class="sp">Armillaria mellea</span>), fino alle prime gelate</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>Sotto quali piante, in concreto</h3>
+    <ul>
+      <li><strong>Vecchi castagni da frutto innestati</strong>, isolati o a chioma larga con prato sotto: sono i migliori in assoluto. Apparato radicale superficiale ed esteso, luce che arriva a terra, lettiera profonda. Rendono più del castagneto ceduo fitto.</li>
+      <li><strong>Betulla e nocciolo</strong> ai margini del castagneto: leccini.</li>
+      <li><strong>Siepi di frassino e biancospino</strong> tra i prati: è lì che esce il prugnolo in primavera, non in mezzo al prato.</li>
+      <li><strong>Ceppaie di castagno</strong>: chiodini in autunno, in ciuffi, spesso in quantità.</li>
+      <li><strong>Ontano bianco</strong> lungo l'Orco e la Noaschetta: non perderci tempo, produce poco di interessante.</li>
+    </ul>
+
+    <h3>Dove spostarsi durante la stagione</h3>
+    <p>La valle a Noasca corre da ovest a est: la <strong>sinistra idrografica guarda a sud</strong> (solatìo), la destra guarda a nord (bacìo). Verifica su quale dei due cade ciascun appezzamento, perché il comportamento è opposto.</p>
+    <ul>
+      <li><strong>Estate calda:</strong> lavora il bacìo, gli impluvi e la parte più ombrosa e umida della proprietà, vicino all'acqua.</li>
+      <li><strong>Autunno:</strong> passa al solatìo, ai castagneti radi e alle fasce erbose tra i castagni. Da fine settembre il terreno tiepido conta più dell'ombra.</li>
+      <li><strong>Prati:</strong> dopo lo sfalcio l'erba corta rende visibili i funghi di prato. Da fine agosto passa i prati <span class="num">4–7</span> giorni dopo ogni pioggia — i funghi saprofiti dei prati rispondono molto più in fretta dei porcini.</li>
+    </ul>
+
+    <div class="box box--key">
+      <p class="box__label">Il vantaggio di essere sui propri terreni</p>
+      <ul>
+        <li><strong>Zero pressione di raccolta.</strong> Puoi passare ogni 3–4 giorni e prendere l'intera buttata invece degli avanzi. Sull'orario e sul giorno della settimana non devi ottimizzare niente.</li>
+        <li><strong>Mappatura definitiva.</strong> Segna le fungaie una volta con GPS e le hai per anni: il micelio è perenne e riesce negli stessi metri quadri.</li>
+        <li><strong>Non rastrellare via la lettiera</strong> sotto i castagni quando raccogli le castagne. Il micelio vive lì. Pulire sì, denudare il terreno no. E non bruciare le foglie sul posto.</li>
+        <li><strong>Sfrutta le vacche.</strong> Lo stazionamento e il letame favoriscono i prataioli: l'anno successivo cerca dove la mandria ha sostato più a lungo.</li>
+      </ul>
+    </div>
+
+    <p>Per la pioggia, usa la stazione Arpa più vicina (Noasca, in mancanza Ceresole Reale) e applica la regola dei giorni della sezione 07. A <span class="num">880 m</span> la stagione dei porcini è circa tre settimane più tardi del basso Canavese e tre settimane più presto degli alpeggi.</p>
+  </section>
+
+  <section id="piante">
+    <h2><span class="sec-num">05</span>Alberi e specie</h2>
+    <p class="lede">Il porcino è micorrizico: cresce in simbiosi con determinate radici. Si cerca l'albero, non il fungo.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Pianta</th><th>Cosa esce</th><th>Dove guardare</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Castagno</td>
+            <td>Porcino nero (<span class="sp">Boletus aereus</span>), reticolato d'estate, <span class="sp">B. edulis</span> in autunno, ovoli</td>
+            <td>Castagneti caldi e ben esposti, bordi di sentiero, vecchi castagneti da frutto abbandonati</td>
+          </tr>
+          <tr>
+            <td>Abete rosso</td>
+            <td><span class="sp">B. edulis</span> classico, <span class="sp">Lactarius deterrimus</span>, steccherino dorato</td>
+            <td>Nel muschio ai margini delle radure e ai bordi del bosco, non nel fitto buio</td>
+          </tr>
+          <tr>
+            <td>Larice</td>
+            <td><span class="sp">B. edulis</span> estivo, pinarolo del larice (<span class="sp">Suillus grevillei</span>)</td>
+            <td>Margini dei pascoli e vicinanza degli alneti di ontano verde</td>
+          </tr>
+          <tr>
+            <td>Betulla</td>
+            <td><span class="sp">Leccinum scabrum</span>, e dove c'è muschio anche porcini</td>
+            <td>Betulleti radi su terreno acido, spesso ex pascoli in ricolonizzazione</td>
+          </tr>
+          <tr>
+            <td>Faggio</td>
+            <td>Ottimo per <span class="sp">B. edulis</span> e <span class="sp">B. aestivalis</span></td>
+            <td>Quasi assente in Orco e Soana. Si trova in Valchiusella</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box">
+      <p class="box__label">Indicatore sul posto</p>
+      <p>Se vedi <span class="sp">Amanita muscaria</span> (rossa a pallini bianchi) e <span class="sp">Amanita rubescens</span> fresche, sei in terreno micorrizico attivo: i porcini escono negli stessi giorni e negli stessi metri quadri. È il segnale di campo più affidabile che hai. Il pinarolo del larice conferma il substrato ma non la buttata.</p>
+    </div>
+  </section>
+
+  <section id="versante">
+    <h2><span class="sec-num">06</span>Versante ed esposizione</h2>
+    <p class="lede">La regola operativa è una sola: il porcino fruttifica con temperatura del suolo a 10 cm intorno ai <span class="num">12–18 °C</span>. Tutto il resto discende da qui.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Condizione</th><th>Dove cercare</th></tr></thead>
+        <tbody>
+          <tr><td>Caldo (giu–ago)</td><td>Versanti nord, valloni ombrosi, quote alte, impluvi umidi</td></tr>
+          <tr><td>Freddo (metà set–ott)</td><td>Versanti sud ed est, quote basse, dove il terreno resta tiepido</td></tr>
+          <tr><td>Annata secca</td><td>Concavità, vicinanza dei rii, dove l'acqua ristagna</td></tr>
+          <tr><td>Annata piovosa</td><td>Dossi e bordi drenanti, dove il terreno non è fradicio</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>In ogni condizione, cerca sempre i <strong>margini</strong>: bordi di radure, di sentieri, di torrenti, cambi di pendenza, orli di bosco. Il bosco fitto e uniforme, con poca luce e lettiera compatta, produce poco.</p>
+  </section>
+
+  <section id="quando">
+    <h2><span class="sec-num">07</span>Quando andare</h2>
+    <p class="lede">Il ciclo è deterministico abbastanza da essere calcolato invece che intuito. Andare "a sentimento" è il motivo principale per cui si torna a casa vuoti.</p>
+
+    <div class="box box--key">
+      <p class="box__label">La regola dei giorni</p>
+      <p>Pioggia significativa (almeno <span class="num">30–40 mm</span> cumulati in 1–2 giorni) → <strong><span class="num">8–12</span> giorni</strong> in periodo caldo, <strong><span class="num">14–20</span> giorni</strong> in periodo fresco → buttata.</p>
+      <p>Vale se nel frattempo non arriva né una gelata né un'ondata di caldo secco: entrambe azzerano il conteggio. I funghi di prato (prataioli, gambesecche) fanno storia a sé: rispondono in <span class="num">4–7</span> giorni.</p>
+    </div>
+
+    <h3>Come misurarlo davvero</h3>
+    <p>Usa i dati in tempo reale della rete meteoidrografica di <strong>Arpa Piemonte</strong>: guarda i pluviometri più vicini alla zona che ti interessa, segna la data dell'evento piovoso e conta i giorni. La pioggia a Castellamonte non è la pioggia a 900 m a Noasca: la differenza di cumulato tra fondovalle e quota può essere del doppio.</p>
+
+    <p>Un secondo innesco utile è lo <strong>shock termico</strong>: un calo netto di temperatura accompagnato da pioggia accelera la buttata rispetto alla sola pioggia.</p>
+    <p><strong>La luna non c'entra.</strong> Non esiste correlazione documentata tra fasi lunari e fruttificazione: ignorala e conta i giorni dalla pioggia.</p>
+  </section>
+
+  <section id="tecnica">
+    <h2><span class="sec-num">08</span>Tecnica di ricerca</h2>
+    <p class="lede">Su terreno pubblico la Valle Orco è battutissima. A parità di stagione e di bosco, la differenza la fanno l'orario, il giorno e la distanza dall'auto.</p>
+
+    <ul>
+      <li><strong>Vai all'alba.</strong> Chi arriva alle 10 raccoglie quello che è avanzato.</li>
+      <li><strong>Vai infrasettimanale.</strong> Sabato e domenica il bosco è già stato pettinato.</li>
+      <li><strong>Allontanati dalla strada.</strong> Oltre i 20–30 minuti di cammino dal parcheggio più vicino la pressione di raccolta crolla: la maggior parte dei raccoglitori non si allontana più di 300 m dall'auto.</li>
+      <li><strong>Cammina piano, a zig-zag lungo le curve di livello.</strong> Scansiona 3–5 metri davanti a te. Cercare in discesa veloce non funziona.</li>
+      <li><strong>Torna sullo stesso posto ogni 3–5 giorni</strong> quando è in produzione: le buttate sono scalari, non tutto esce lo stesso giorno.</li>
+      <li><strong>Segna con GPS ogni ritrovamento.</strong> Il micelio è perenne: in due o tre stagioni ti costruisci un giro tuo.</li>
+    </ul>
+  </section>
+
+  <section id="calendario">
+    <h2><span class="sec-num">09</span>Calendario stagionale</h2>
+    <p class="lede">Riassunto operativo per l'insieme delle due valli, sempre subordinato alla regola dei giorni dalla pioggia.</p>
+
+    <div class="tw">
+      <table>
+        <thead><tr><th>Periodo</th><th>Quota</th><th>Bosco</th><th>Esposizione</th></tr></thead>
+        <tbody>
+          <tr><td>Giugno</td><td class="num">500–900 m</td><td>Castagneti (reticolati d'estate)</td><td>Nord e mezz'ombra</td></tr>
+          <tr><td>Luglio</td><td class="num">1200–1800 m</td><td>Lariceti, alneti, abetine</td><td>Nord, impluvi</td></tr>
+          <tr><td>Agosto</td><td class="num">1400–2000 m</td><td>Lariceti, margini dei pascoli</td><td>Nord, valloni freschi</td></tr>
+          <tr><td>Settembre</td><td class="num">900–1500 m</td><td>Abete rosso, betulla</td><td>Tutte, si apre l'est</td></tr>
+          <tr><td>Ottobre</td><td class="num">450–900 m</td><td>Castagneti (porcino nero, edulis)</td><td>Sud ed est</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="sicurezza">
+    <h2><span class="sec-num">10</span>Sicurezza e controllo</h2>
+    <div class="box box--stop">
+      <p class="box__label">Prima di mangiare</p>
+      <p>Qualsiasi cosa non riconosciuta con certezza assoluta va fatta controllare allo <strong>sportello micologico gratuito dell'ASL TO4</strong>, che ha sedi in Canavese e in stagione è aperto quasi tutti i giorni. Le app di riconoscimento fotografico non sono un sostituto: sbagliano, e in micologia un errore di specie può essere letale.</p>
+    </div>
+    <p>Porta i funghi al controllo <strong>interi</strong>, con il gambo e la base intatti: la base del gambo è spesso il carattere diagnostico decisivo, e tagliarla sul posto rende l'identificazione impossibile.</p>
+
+    <h3>Attenzione specifica ai funghi di prato</h3>
+    <p>I prati sono più insidiosi del bosco perché le specie buone e quelle tossiche crescono negli stessi cerchi, con lo stesso portamento:</p>
+    <ul>
+      <li><strong>Gambesecche</strong> (<span class="sp">Marasmius oreades</span>) e <strong><span class="sp">Clitocybe dealbata</span></strong> condividono i cerchi nell'erba. La seconda è tossica e le lamelle sono bianche e decorrenti invece che larghe, spaziate e non decorrenti.</li>
+      <li><strong>Prataioli</strong> (<span class="sp">Agaricus campestris</span>): scarta gli esemplari che ingialliscono alla base del gambo e odorano di inchiostro o fenolo (<span class="sp">A. xanthodermus</span>).</li>
+      <li>Nei prataioli giovani controlla sempre lamelle rosa e assenza di volva alla base: è il controllo che separa un <span class="sp">Agaricus</span> da un'amanita bianca.</li>
+    </ul>
+  </section>
+
+  <section id="link">
+    <h2><span class="sec-num">11</span>Link utili</h2>
+    <ul>
+      <li><a href="https://www.pngp.it/regolamento-fruizione" rel="noopener noreferrer">PNGP — regolamento di fruizione (art. 1: sottobosco e deroghe)</a></li>
+      <li><a href="https://www.pngp.it/ente-parco/cartografia-confini-del-parco" rel="noopener noreferrer">PNGP — cartografia dei confini del Parco</a></li>
+      <li><a href="https://www.arpa.piemonte.it/" rel="noopener noreferrer">Arpa Piemonte — dati meteo e pluviometri in tempo reale</a></li>
+      <li><a href="https://www.aslto4.piemonte.it/" rel="noopener noreferrer">ASL TO4 — ispettorato micologico</a></li>
+      <li>Centro visitatori Noasca — <a href="mailto:info.pie@pngp.it">info.pie@pngp.it</a>, 0124 901070</li>
+    </ul>
+    <footer class="page">
+      Guida personale, Alto Canavese. Tariffe e regolamenti possono cambiare: il regolamento-stralcio del PNGP resta in vigore fino all'approvazione del Piano del Parco. Verifica il costo del titolo regionale all'inizio di ogni stagione.
+    </footer>
+  </section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  var body = document.body,
+      burger = document.getElementById('burger'),
+      scrim = document.getElementById('scrim'),
+      nav = document.getElementById('nav'),
+      links = Array.prototype.slice.call(nav.querySelectorAll('a[href^="#"]'));
+
+  function setNav(open){
+    body.classList.toggle('nav-open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    burger.setAttribute('aria-label', open ? "Chiudi l'indice" : "Apri l'indice");
+    scrim.hidden = !open;
+  }
+  burger.addEventListener('click', function(){ setNav(!body.classList.contains('nav-open')); });
+  scrim.addEventListener('click', function(){ setNav(false); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') setNav(false); });
+  links.forEach(function(a){
+    a.addEventListener('click', function(){ if(window.innerWidth <= 900) setNav(false); });
+  });
+
+  var map = {};
+  links.forEach(function(a){ map[a.getAttribute('href').slice(1)] = a; });
+  var sections = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+  if('IntersectionObserver' in window){
+    var visible = {};
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting; });
+      var current = null;
+      for(var i=0;i<sections.length;i++){ if(visible[sections[i].id]){ current = sections[i].id; break; } }
+      links.forEach(function(a){ a.classList.remove('is-active'); });
+      if(current && map[current]) map[current].classList.add('is-active');
+    }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+    sections.forEach(function(s){ io.observe(s); });
+  }
+})();
+</script>
+</body>
+</html>
